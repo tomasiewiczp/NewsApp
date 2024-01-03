@@ -7,7 +7,7 @@ class NewsAPI:
         self.download_articles()
 
     def download_articles(self):
-        self.articles=[Article(input) for input in self.client.get_top_headlines(category=self.category, language='en')['articles']]
+        self.articles=[Article(input) for input in self.client.get_everything(q=self.category,sort_by='popularity', language='en')['articles']]
 
     def get_titles_of_articles(self):
         return [article.get_title() for article in self.articles]
