@@ -14,23 +14,26 @@ class Article:
     
     def get_url(self):
         return self.url
-    
-    def print_summary(self):
+   
+    def get_summary(self):
         """
-        Prints a formatted summary of the article.
+        Returns a dictionary summary of the article.
         """
-        print("------------------------------------------------")
-        print(f"Title: {self.title}")
-        print(f"Source: {self.source}")
+        summary_dict = {
+            "Title": self.title,
+            "Source": self.source,
+            "URL": self.url
+        }
+
         if self.author:
-            print(f"Author: {self.author}")
+            summary_dict["Author"] = self.author
         if self.publishedAt:
-            print(f"Published At: {self.publishedAt}")
-        print(f"URL: {self.url}")
+            summary_dict["Published At"] = self.publishedAt
         if self.urlToImage:
-            print(f"Image URL: {self.urlToImage}")
+            summary_dict["Image URL"] = self.urlToImage
         if self.description:
-            print(f"Description: {self.description}")
-        if self.content:
-            print(f"Content: {self.content}")
-        print("------------------------------------------------")
+            # Przycinanie opisu, jeśli zawiera '[+'
+            truncated_description = self.description.split('[+')[0]
+            summary_dict["Description"] = truncated_description
+
+        return summary_dict
