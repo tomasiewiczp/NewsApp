@@ -11,9 +11,6 @@ class Article:
 
     def get_title(self):
         return self.title
-    
-    def get_url(self):
-        return self.url
    
     def get_summary(self):
         """
@@ -24,7 +21,6 @@ class Article:
             "Source": self.source,
             "URL": self.url
         }
-
         if self.author:
             summary_dict["Author"] = self.author
         if self.publishedAt:
@@ -32,8 +28,6 @@ class Article:
         if self.urlToImage:
             summary_dict["Image URL"] = self.urlToImage
         if self.description:
-            # Przycinanie opisu, jeśli zawiera '[+'
             truncated_description = self.description.split('[+')[0]
             summary_dict["Description"] = truncated_description
-
         return summary_dict

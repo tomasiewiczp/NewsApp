@@ -38,7 +38,7 @@ class WebApp:
 
         @self.app.route('/articles/<title>')
         def show_article_details(title):
-            return render_template('article_details.html', title=title,details=self.newsAPIclient.find_article_by_title(title))
+            return render_template('article_details.html', title=title,details=self.newsAPIclient.give_articles_details(title))
         
     def run(self):
         self.app.run(debug=True)

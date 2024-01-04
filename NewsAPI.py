@@ -14,10 +14,7 @@ class NewsAPI:
     def get_titles_of_articles(self):
         return [article.get_title() for article in self.articles]
 
-    def get_article_url(self,num):
-        return self.articles[num].get_url()
-
-    def find_article_by_title(self,title):
+    def give_articles_details(self,title):
         for article in self.articles:
             if article.get_title()==title:
                 return article.get_summary()
