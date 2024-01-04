@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article_details</title>
+</head>
+<body>
+    <h1>{{title}}</h1>
+    <ul>
+        <li>title:  {{details['Title']}}</li>
+        <li>source:  {{details['Source']}}</li>
+        <li>Author:  {{details['Author']}}</li>
+        <li>published at:  {{details['Published At']}}</li>
+        <li>description:  {{details['Description']}}</li>
+        <li><a href="{{details['URL']}}">CLICK HERE TO GO TO THE ARTICLE</a></li>
+        <!-- {% for title in titles %}
+            <li>{{ title }}</li>
+        {% endfor %} -->
+    </ul>
+</body>
+</html>
