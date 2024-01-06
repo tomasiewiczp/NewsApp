@@ -1,6 +1,6 @@
 import logging
 from newsapi import NewsApiClient
-from Article import Article
+from article import Article
 from variables import API_KEY
 
 class NewsAPI:

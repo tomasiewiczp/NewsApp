@@ -1,5 +1,5 @@
 from variables import CATEGORIES
-from NewsAPI import NewsAPI
+from news_api import NewsAPI
 import requests
 from flask import Flask, render_template, abort, redirect, url_for
 import logging
