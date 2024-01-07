@@ -1,0 +1,22 @@
+/* main.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #47aeae;
+    text-align: center;
+}
+
+
+.header {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+.article-title {
+    color: #333;
+    font-size: 30px;
+}
+
+.article-title:hover {
+    color: #ff0000;
+}
