@@ -5,11 +5,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <h1>Articles</h1>
+    <h1>{{category}}</h1>
     <ul>
         {% for title in titles %}
-            <li>{{ title }}</li>
-            <li><a href="/articles/{{title}}">{{title}}</a></li>
+            <hr/>
+            <img src="{{title['photo_url']}}" style="width: 300px; height: auto;"/>
+            <li><a href="/articles/{{title['title']}}">{{title['title']}}</a></li>
         {% endfor %}
     </ul>
 </body>

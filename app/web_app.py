@@ -66,8 +66,8 @@ class WebApp:
                 abort(404)
             self.create_newsAPI_client(category_name)
             if self.newsAPIclient:
-                titles = self.newsAPIclient.get_titles_of_articles()
-                return render_template('articles.html', titles=titles)
+                base_info = self.newsAPIclient.get_articles_base_info()
+                return render_template('articles.html', titles=base_info, category=category_name.upper())
             else:
                 return "Error loading articles", 500
 

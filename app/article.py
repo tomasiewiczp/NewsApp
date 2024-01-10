@@ -71,7 +71,12 @@ class Article:
             summary_dict["Published At"] = self.publishedAt
         if self.urlToImage:
             summary_dict["Image URL"] = self.urlToImage
+        else:
+            summary_dict["Image URL"] = 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg'
         if self.description:
             truncated_description = self.description.split('[+')[0]
             summary_dict["Description"] = truncated_description
         return summary_dict
+
+    def check_if_yahoo(self):
+        return 'Yahoo' in self.source or 'Wired' in self.source

@@ -6,7 +6,10 @@
 </head>
 <body>
     <h1>{{title}}</h1>
-    <ul>
+    <h3>Details of the article:</h3>
+    <ol>
+        <img src="{{details['Image URL']}}" style="width: 500px; height: auto;"/>
+        <!-- <img src="{{details['Image URL']}}"/> -->
         <li>title:  {{details['Title']}}</li>
         <li>source:  {{details['Source']}}</li>
         <li>Author:  {{details['Author']}}</li>
@@ -14,6 +17,6 @@
         <li>description:  {{details['Description']}}</li>
         <li><a href="{{details['URL']}}">CLICK HERE TO GO TO THE ARTICLE</a></li>
         <li><a href="/categories">go back</a></li>
-    </ul>
+    </ol>
 </body>
 </html>
