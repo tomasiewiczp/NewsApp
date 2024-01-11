@@ -51,7 +51,7 @@ class WebApp:
             Renders the home page template.
             """
             try:
-                return render_template('home.html')
+                return render_template('home.html',categories=self.categories)
             except Exception as e:
                 logging.error(f"Error rendering home template: {e}")
                 return "Error rendering the page", 500
@@ -90,21 +90,6 @@ class WebApp:
 
             """
             return render_template('404.html'), 404
-
-        @self.app.route('/categories')
-        def categories():
-            """
-            Renders the categories page template.
-
-            """
-            if self.categories:
-                try:
-                    return render_template('categories.html', categories=self.categories)
-                except Exception as e:
-                    logging.error(f"Error rendering home template: {e}")
-                    return "Error rendering the page", 500
-            else:
-                return redirect(url_for('home'))
 
     def run(self):
         """

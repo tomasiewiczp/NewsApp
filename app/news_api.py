@@ -30,7 +30,7 @@ class NewsAPI:
             self.download_articles()
         except Exception as e:
             logging.error(f'Error while connecting with NewsAPI client: {e}')
-        self.delete_yahoo_articles()
+        self.remove_deleted_articles()
 
     def download_articles(self):
         """
@@ -39,7 +39,8 @@ class NewsAPI:
         """
         if self.client:
             try:
-                response = self.client.get_everything(q=self.category, sort_by='popularity', language='en')
+                response = self.client.get_top_headlines(category=self.category, language='en',page_size=100)
+                # response = self.client.get_everything(q=self.category, sort_by='popularity', language='en')
                 self.articles = [Article(article_data) for article_data in response['articles']]
             except Exception as e:
                 logging.error(f'Error while downloading articles from NewsAPI: {e}')
@@ -61,9 +62,9 @@ class NewsAPI:
     def get_articles_base_info(self):
         return [{'title':article.get_summary()['Title'],'photo_url':article.get_summary()["Image URL"]} for article in self.articles]
     
-    def delete_yahoo_articles(self):
+    def remove_deleted_articles(self):
         final_list=[]
         for article in self.articles:
-            if not article.check_if_yahoo():
+            if not article.check_if_valid():
                 final_list.append(article)
         self.articles=final_list
