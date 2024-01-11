@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-    <h1>Welcome to the News Summary</h1>
-    <a href="/categories">Categories</a>
-</body>
+<html lang="en">
+    <head>
+        <title>Home Page</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+        <h1>NEWS SUMMARY</h1>
+                <a href="/category/business"><img src="{{ url_for('static', filename='business.png') }}" style="width: 250px; height: auto"/></a>
+                <a href="/category/entertainment"><img src="{{ url_for('static', filename='entertainment.png') }} " style="width: 250px; height: auto"/></a>
+                <a href="/category/general"><img src="{{ url_for('static', filename='general.png') }}" style="width: 250px; height: auto"/></a>
+                <a href="/category/health"><img src="{{ url_for('static', filename='health.png') }} " style="width: 250px; height: auto"/></a>
+                <a href="/category/science"><img src="{{ url_for('static', filename='science.png') }}" style="width: 250px; height: auto"/></a>
+                <a href="/category/sports"><img src="{{ url_for('static', filename='sports.png') }} " style="width: 250px; height: auto"/></a>
+                <a href="/category/technology"><img src="{{ url_for('static', filename='technology.png') }} " style="width: 250px; height: auto"/></a>
+    </body>
 </html>

@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Article_details</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-    <h1>{{title}}</h1>
-    <h3>Details of the article:</h3>
-    <ol>
-        <img src="{{details['Image URL']}}" style="width: 500px; height: auto;"/>
-        <!-- <img src="{{details['Image URL']}}"/> -->
-        <li>title:  {{details['Title']}}</li>
-        <li>source:  {{details['Source']}}</li>
-        <li>Author:  {{details['Author']}}</li>
-        <li>published at:  {{details['Published At']}}</li>
-        <li>description:  {{details['Description']}}</li>
-        <li><a href="{{details['URL']}}">CLICK HERE TO GO TO THE ARTICLE</a></li>
-        <li><a href="/categories">go back</a></li>
-    </ol>
-</body>
-</html>
+<html lang="en">
+    <head>
+        <title>Article_details</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        <h3>Details of the article:</h3>
+            <img src="{{details['Image URL']}}" style="width: 500px; height: auto;"/>
+            <p>source:  {{details['Source']}}   Author:  {{details['Author']}}</p>
+            <p>published at:  {{details['Published At']}}</p>
+            <p>description:  {{details['Description']}}</p>
+            <p><a href="{{details['URL']}}">CLICK HERE TO GO TO THE ARTICLE</a></p>
+            <p><a href="/categories">MAIN PAGE</a></p>
+    </body>
+</html>busi

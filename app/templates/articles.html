@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Articles</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-    <h1>{{category}}</h1>
-    <ul>
-        {% for title in titles %}
-            <hr/>
-            <img src="{{title['photo_url']}}" style="width: 300px; height: auto;"/>
-            <li><a href="/articles/{{title['title']}}">{{title['title']}}</a></li>
-        {% endfor %}
-    </ul>
-</body>
+<html lang="en">
+    <head>
+        <title>Articles</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+    <body>
+        <h1>{{category}}</h1>
+            {% for title in titles %}
+                <hr/>
+                <a href="/articles/{{title['title']}}"> <img src="{{title['photo_url']}}" style="width: 300px; height: auto;"/></a>
+                <p><a href="/articles/{{title['title']}}">{{title['title']}}</a></p>
+            {% endfor %}
+    </body>
 </html>
