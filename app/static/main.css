@@ -1,22 +1,46 @@
-/* main.css */
+/* colour palette:
+ #27374D
+ #526D82
+ #9DB2BF
+ #DDE6ED */
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #c9cdcd;
+    font-family: Verdana, sans-serif;
+    border: 3px solid #526D82;
+    background-color: #DDE6ED ;
     text-align: center;
+    font-size:15px;
+    border: 5px solid #27374D;
 }
 
+h1{
+    color: #27374D;
+    background-color: #9DB2BF ;
+}
 
-.header {
-    background-color: #f4f4f4;
-    padding: 20px;
+footer {
     text-align: center;
+    padding: 5px;
+    background-color: #9DB2BF;
+    color: #27374D;
+    border: 2px solid #526D82;
+  }
+
+.page-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 45px;
+    background-color: #9DB2BF;
+    text-align: center;
+    color:#27374D;
+
+    
+}
+img {
+    width: 12%;
+    border: 3px solid #526D82;
 }
 
-.article-title {
-    color: #333;
-    font-size: 30px;
-}
-
-.article-title:hover {
-    color: #ff0000;
+div{
+    border: 3px solid #526D82;
+    margin:0px 25%;
 }

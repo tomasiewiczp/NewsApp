@@ -4,15 +4,24 @@
         <title>Home Page</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1>NEWS SUMMARY</h1>
-                <a href="/category/business"><img src="{{ url_for('static', filename='business.png') }}" style="width: 250px; height: auto"/></a>
-                <a href="/category/entertainment"><img src="{{ url_for('static', filename='entertainment.png') }} " style="width: 250px; height: auto"/></a>
-                <a href="/category/general"><img src="{{ url_for('static', filename='general.png') }}" style="width: 250px; height: auto"/></a>
-                <a href="/category/health"><img src="{{ url_for('static', filename='health.png') }} " style="width: 250px; height: auto"/></a>
-                <a href="/category/science"><img src="{{ url_for('static', filename='science.png') }}" style="width: 250px; height: auto"/></a>
-                <a href="/category/sports"><img src="{{ url_for('static', filename='sports.png') }} " style="width: 250px; height: auto"/></a>
-                <a href="/category/technology"><img src="{{ url_for('static', filename='technology.png') }} " style="width: 250px; height: auto"/></a>
+        <h1 class="page-name">NEWS SUMMARY</h1>
+                <a href="/category/business"><img src="{{ url_for('static', filename='business.png') }}"/></a>
+                <a href="/category/entertainment"><img src="{{ url_for('static', filename='entertainment.png') }} "/></a>
+                <a href="/category/general"><img src="{{ url_for('static', filename='general.png') }}"/></a>
+                <a href="/category/health"><img src="{{ url_for('static', filename='health.png') }} "/></a>
+                <br/>
+                <a href="/category/science"><img src="{{ url_for('static', filename='science.png') }}"/></a>
+                <a href="/category/sports"><img src="{{ url_for('static', filename='sports.png') }} "/></a>
+                <a href="/category/technology"><img src="{{ url_for('static', filename='technology.png') }} "/></a>
+                <footer>
+                    <small>
+                        © 2024 created by Pawel Tomasiewicz
+                    </small>
+                </footer>
     </body>
 </html>

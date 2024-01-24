@@ -8,9 +8,11 @@
     <body>
         <h1>{{category}}</h1>
             {% for title in titles %}
+            <div>
                 <hr/>
                 <a href="/articles/{{title['title']}}"> <img src="{{title['photo_url']}}" style="width: 300px; height: auto;"/></a>
                 <p><a href="/articles/{{title['title']}}">{{title['title']}}</a></p>
+            </div>
             {% endfor %}
     </body>
 </html>
