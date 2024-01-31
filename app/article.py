@@ -79,4 +79,4 @@ class Article:
         return summary_dict
 
     def check_if_valid(self):
-        return 'Yahoo' in self.source or 'Wired' in self.source or not self.urlToImage or 'telugu' in self.source
+        return 'Yahoo' in self.source or 'Wired' in self.source or not self.urlToImage or 'telugu' in self.source or 'Livemint' in self.source
