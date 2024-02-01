@@ -12,12 +12,12 @@
     <body>
         <style>
             img {
-                width: 13%;
+                width: 14%;
                 border: 2px solid #526D82;
-            } 
+            }
         </style>
         <div class="container" >
-            <h1 class="page-name">NEWS SUMMARY</h1>
+            <h1 style="font-size: 70px" class="page-name">WORLD WATCH</h1>
             <a href="/articles/business"><img src="{{ url_for('static', filename='business.png') }}"/></a>
             <a href="/articles/entertainment"><img src="{{ url_for('static', filename='entertainment.png') }} "/></a>
             <a href="/articles/general"><img src="{{ url_for('static', filename='general.png') }}"/></a>
@@ -26,33 +26,31 @@
             <a href="/articles/sports"><img src="{{ url_for('static', filename='sports.png') }} "/></a>
             <a href="/articles/technology"><img src="{{ url_for('static', filename='technology.png') }} "/></a>
 
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                {% for article in articles_data %}
-                <div class="col">
-                    <div class="card h-100 text-center mb-3 ">
-                        <img src="{{article['Image URL']}}" class="card-img-top custom-card-img" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">{{article['Title']}}</h5>
-                          <p class="card-text">{{article['Description']}}</p>
-                          
-                        </div>
-                        <div class="card-footer">
-                            <a href="{{article['URL']}}" class="btn go-to-button btn-lg">Read On</a>
-                            <p>source:  {{article['Source']}}</p>
-                        </div>
-                    </div> 
-                </div>
+            <div class="articles-section">
+                {% for bundle_name in articles_data.keys() %}
+                    <!-- Biały pasek z nazwą bundla -->
+                    <div class="bundle-header text-center py-2 my-4">
+                        <h2 class="bundle-name">{{ bundle_name }}</h2>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        {% for article in articles_data[bundle_name] %}
+                            <div class="col">
+                                <div class="card h-100 text-center mb-3 ">
+                                    <img src="{{article['Image URL']}}" class="card-img-top custom-card-img" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{article['Title']}}</h5>
+                                        <p class="card-text">{{article['Description']}}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a href="{{article['URL']}}" class="btn go-to-button btn-lg">Read On</a>
+                                        <p>source:  {{article['Source']}}</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        {% endfor %}
+                    </div>
                 {% endfor %}
             </div>
-
-        
-
-            <footer>
-                <small>
-                    © 2024 created by Pawel Tomasiewicz
-                </small>
-            </footer>
         </div>
-
     </body>
-</html>
+    </html>

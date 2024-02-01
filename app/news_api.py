@@ -71,12 +71,25 @@ class NewsAPI:
 
     def get_sources(self):
         all_sources = self.client.get_sources()
-        self.sources=[{'id':source['id'],'name':source['name']} for source in all_sources['sources']]
+        self.sources={}
+        for source in all_sources['sources']:
+            self.sources[source['id']]=source['name']
 
-
-
+    def get_main_page_article_bundles(self):
+        bundle_names = [self.sources[source] for source in DEFAULT_TO_NEWS_SITES.split(',')]
+        main_page_articles = [article.get_summary() for article in self.articles]
+        bundled_articles={}
+        for source in bundle_names:
+            for article in main_page_articles:
+                if article['Source']==source:
+                    try:
+                        bundled_articles[source].append(article)
+                    except:
+                        bundled_articles[source] = [article]
+        return bundled_articles
 
 
 # cl=NewsAPI()
-# print('test')
-# cl.get_default_top_news()
+# # print('test')
+# # cl.download_main_articles()
+# print(cl.get_main_page_article_bundles())

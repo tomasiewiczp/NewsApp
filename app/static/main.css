@@ -32,7 +32,7 @@ body {
  h1{
     color: #27374D;
     font-family: 'Instrument Serif', serif;
-    font-size: 45px;
+    font-size: 100px;
     background-color: #9DB2BF ;
 }
 
@@ -55,4 +55,9 @@ footer {
 .go-to-button{
     background-color: #27374D;
     color: #ffffff
+}
+
+.bundle-header{
+    background-color:  #9DB2BF;
+    color:  #27374D;
 }

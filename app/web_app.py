@@ -55,7 +55,7 @@ class WebApp:
             """
             self.create_newsAPI_client()
             if self.newsAPIclient:
-                articles_data = self.newsAPIclient.get_articles_info()
+                articles_data = self.newsAPIclient.get_main_page_article_bundles()
                 return render_template('home.html', articles_data=articles_data, categories=self.categories)
             else:
                 logging.error(f"Error rendering home template: {e}")
