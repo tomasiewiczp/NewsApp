@@ -1,7 +1,7 @@
 import logging
 from newsapi import NewsApiClient
 from article import Article
-from variables import API_KEY
+from variables import API_KEY, DEFAULT_TO_NEWS_SITES
 
 class NewsAPI:
     """
@@ -10,7 +10,7 @@ class NewsAPI:
 
     """
 
-    def __init__(self, category):
+    def __init__(self, category=None):
         """
         Initializes the NewsAPI object with a specified category.
         It also initializes the NewsAPI client and downloads the articles.
@@ -20,6 +20,7 @@ class NewsAPI:
         self.client = None
         self.articles = []
         self.initialize_client()
+        self.get_sources()
 
     def initialize_client(self):
         """
@@ -27,12 +28,15 @@ class NewsAPI:
         """
         try:
             self.client = NewsApiClient(api_key=API_KEY)
-            self.download_articles()
+            if self.category:
+                self.download_categorised_articles()
+            else:
+                self.download_main_articles()
         except Exception as e:
             logging.error(f'Error while connecting with NewsAPI client: {e}')
         self.remove_deleted_articles()
 
-    def download_articles(self):
+    def download_categorised_articles(self):
         """
         Downloads the articles from the NewsAPI client based on the specified category
         and handles any errors that occur during the download.
@@ -40,7 +44,6 @@ class NewsAPI:
         if self.client:
             try:
                 response = self.client.get_top_headlines(category=self.category, language='en',page_size=100)
-                # response = self.client.get_everything(q=self.category, sort_by='popularity', language='en')
                 self.articles = [Article(article_data) for article_data in response['articles']]
             except Exception as e:
                 logging.error(f'Error while downloading articles from NewsAPI: {e}')
@@ -51,16 +54,8 @@ class NewsAPI:
         """
         return [article.get_title() for article in self.articles]
 
-    def give_articles_details(self, title):
-        """
-        Returns the details of a specific article based on its title.
-        """
-        for article in self.articles:
-            if article.get_title() == title:
-                return article.get_summary()
-    
-    def get_articles_base_info(self):
-        return [{'title':article.get_summary()['Title'],'photo_url':article.get_summary()["Image URL"]} for article in self.articles]
+    def get_articles_info(self):
+        return [article.get_summary() for article in self.articles]
     
     def remove_deleted_articles(self):
         final_list=[]
@@ -68,3 +63,20 @@ class NewsAPI:
             if not article.check_if_valid():
                 final_list.append(article)
         self.articles=final_list
+
+    def download_main_articles(self):
+        chosen_sources = DEFAULT_TO_NEWS_SITES
+        response = self.client.get_top_headlines(sources=chosen_sources, page_size=100)
+        self.articles = [Article(article_data) for article_data in response['articles']]
+
+    def get_sources(self):
+        all_sources = self.client.get_sources()
+        self.sources=[{'id':source['id'],'name':source['name']} for source in all_sources['sources']]
+
+
+
+
+
+# cl=NewsAPI()
+# print('test')
+# cl.get_default_top_news()

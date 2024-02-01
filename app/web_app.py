@@ -13,14 +13,17 @@ class WebApp:
         newsAPIclient (NewsAPI): The NewsAPI client object for downloading and retrieving articles.
     """
 
-    def create_newsAPI_client(self, category):
+    def create_newsAPI_client(self, category=None):
         """
         Creates a NewsAPI client object with the specified category.
 
         """
         self.newsAPIclient = None
         try:
-            self.newsAPIclient = NewsAPI(category)
+            if category:
+                self.newsAPIclient = NewsAPI(category)
+            else:
+                self.newsAPIclient = NewsAPI()
         except requests.exceptions.HTTPError as e:
             logging.error(f" HTTP error: {e}")
         except requests.exceptions.ConnectionError:
@@ -50,13 +53,15 @@ class WebApp:
             """
             Renders the home page template.
             """
-            try:
-                return render_template('home.html',categories=self.categories)
-            except Exception as e:
+            self.create_newsAPI_client()
+            if self.newsAPIclient:
+                articles_data = self.newsAPIclient.get_articles_info()
+                return render_template('home.html', articles_data=articles_data, categories=self.categories)
+            else:
                 logging.error(f"Error rendering home template: {e}")
                 return "Error rendering the page", 500
 
-        @self.app.route('/category/<category_name>')
+        @self.app.route('/articles/<category_name>')
         def show_category(category_name):
             """
             Renders the category page template for the specified category.
@@ -66,22 +71,10 @@ class WebApp:
                 abort(404)
             self.create_newsAPI_client(category_name)
             if self.newsAPIclient:
-                base_info = self.newsAPIclient.get_articles_base_info()
-                return render_template('articles.html', titles=base_info, category=category_name.upper())
+                articles_data = self.newsAPIclient.get_articles_info()
+                return render_template('articles.html', titles=articles_data, category=category_name.upper())
             else:
                 return "Error loading articles", 500
-
-        @self.app.route('/articles/<title>')
-        def show_article_details(title):
-            """
-            Renders the article details page template for the specified article title.
-
-            """
-            details = self.newsAPIclient.give_articles_details(title)
-            if details:
-                return render_template('article_details.html', title=title, details=details)
-            else:
-                return redirect(url_for('home'))
 
         @self.app.errorhandler(404)
         def page_not_found(e):

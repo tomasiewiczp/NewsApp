@@ -79,4 +79,7 @@ class Article:
         return summary_dict
 
     def check_if_valid(self):
-        return 'Yahoo' in self.source or 'Wired' in self.source or not self.urlToImage or 'telugu' in self.source or 'Livemint' in self.source
+        # List of substrings to check in the source
+        invalid_sources = ['Yahoo', 'telugu', 'Livemint', 'The Times of India', 'Wired', ' [Removed]' , 'Google News'] 
+        # Check if any invalid source is part of self.source or if image URL is missing
+        return any(substring in self.source for substring in invalid_sources) or not self.urlToImage
