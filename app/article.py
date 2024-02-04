@@ -80,6 +80,6 @@ class Article:
 
     def check_if_valid(self):
         # List of substrings to check in the source
-        invalid_sources = ['Yahoo', 'telugu', 'Livemint', 'The Times of India', 'Wired', ' [Removed]' , 'Google News'] 
+        invalid_sources = ['Yahoo', 'telugu', 'Livemint', 'The Times of India', 'Wired', ' [Removed]' , 'Google News', 'Epravda', 'Droid Life'] 
         # Check if any invalid source is part of self.source or if image URL is missing
         return any(substring in self.source for substring in invalid_sources) or not self.urlToImage
